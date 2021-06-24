@@ -415,6 +415,7 @@ C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\bin\We
 C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\bin\Antlr3.Runtime.pdb
 C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\bin\ru-ru\BundleTransformer.Core.resources.dll
+C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.csprojAssemblyReference.cache
 C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.csproj.CoreCompileInputs.cache
 C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.csproj.CopyComplete
 C:\Users\ADMIN\OneDrive\Máy tính\Thuctapchuyenmon\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.dll
