@@ -5,8 +5,10 @@
     height: 100%;
     position: fixed;
     display: block;
-    background-color: #3C4858;
+    background-color: #040d21;
     margin-top: -20px;
+    background-image: url(https://github.githubassets.com/images/modules/site/home/hero-glow.svg);
+    background-size: cover
 }
 
 .account {
@@ -30,7 +32,7 @@
 }
 
 .diveditpass {
-    background-image: linear-gradient(60deg, #ab47bc, #8e24aa);
+    background-image: linear-gradient(60deg, #5858FA, #081C46);
     position: relative;
     width: 90%;
     right: 20px;
@@ -42,7 +44,12 @@
 }
 
 input {
-    border-radius: 10px;
-    width: 80%;
+    border-radius: 5px;
+    width: 90%;
+    
+    max-width: 90%;
     outline: none;
 }
+
+
+

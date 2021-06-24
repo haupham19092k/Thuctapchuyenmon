@@ -82,6 +82,9 @@
     <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
+    <Reference Include="NotFoundMvc, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NotFoundMvc.1.5.0\lib\net40\NotFoundMvc.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -271,15 +274,18 @@
     <Content Include="Content\css\newpass.css" />
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\showbaitap.css" />
+    <Content Include="Content\css\snow.css" />
     <Content Include="Content\css\thongbao.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\image\Icon\b7671b668a78e0208b9c2d1c36802ce8.gif" />
     <Content Include="Content\image\Icon\classroom-icon-png-8.jpg" />
     <Content Include="Content\image\Icon\empty_states_students.png" />
+    <Content Include="Content\image\Icon\hero-glow.svg" />
     <Content Include="Content\image\Icon\icons8-member-48.png" />
     <Content Include="Content\image\Icon\library-owl.jpg" />
     <Content Include="Content\image\Icon\menu.png" />
+    <Content Include="Content\image\Icon\pexels-alleksana-4271933.jpg" />
     <Content Include="Content\image\Icon\unnamed.png" />
     <Content Include="Content\image\imageaccount\a.jpg" />
     <Content Include="Content\image\imageaccount\b.jpg" />
@@ -536,6 +542,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Feedback\Sendfeedback.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
