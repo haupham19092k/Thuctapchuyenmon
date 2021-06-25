@@ -33,6 +33,21 @@ namespace HOCONLINE.Models.GetData
             return lophoc;
 
         }
+            public static string getnameclass(string s)
+        {
+            DB db = new DB();
+            var a = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(s)).TenLop;
+            if (a == null)
+            {
+                return "";
+            }
+            else
+            {
+                return a;
+            }
+            return "";
+
+        }
         public static List<BaiTap> getbaitapdanop(string s, string user)
         {
             DB db = new DB();

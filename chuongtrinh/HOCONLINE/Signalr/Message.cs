@@ -26,7 +26,21 @@ namespace HOCONLINE.Signalr
             
            
         }
+        public void classnames(string sender, string receiver, string malop)
+        {
 
-       
+            DB db = new DB();
+            var token = db.TaiKhoans.SingleOrDefault(x => x.TenDangNhap.Equals(receiver));
+            var user = token.token;
+            if (user == null)
+            {
+                user = "";
+            }
+            Clients.Client(user).classname(Models.GetData.GetClass.getnameclass(malop));
+
+
+        }
+
+
     }
 }

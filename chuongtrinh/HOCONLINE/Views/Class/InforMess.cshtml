@@ -159,7 +159,7 @@
                 var tinnhan = $("#tinnhan").val();
                 if (tinnhan != ''  ) {
                     mess.server.messages("@nguoitao",'@Model.TenDangNhap',"@malop", $("#tinnhan").val());
-
+                    mess.server.classnames("@nguoitao",'@Model.TenDangNhap',"@malop");
                     $('#tinnhan').summernote('code','');
                     $('#tinnhan').val("");
 

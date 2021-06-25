@@ -164,7 +164,7 @@ namespace HOCONLINE.Controllers
             string nguoitao = user.TenDangNhap;
            if (Session["lophoc"] == null) return RedirectToAction("Index", "TrangChu");
             string malop = Session["malop"].ToString();
-            var lop = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NgayTao.Equals(user.TenDangNhap));
+            var lop = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (lop == null)
             {
                 return RedirectToAction("Index", "TrangChu");
@@ -206,10 +206,9 @@ namespace HOCONLINE.Controllers
         {
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
-            if (id != null)
-            {
+            
                 Session["malop"] = id;
-            }
+            
            var lop = db.ThanhVienLops.SingleOrDefault(x => x.MaLop.ToString().Equals(id) && x.Mathanhvien.Equals(user.TenDangNhap));
            
             if (lop == null)
@@ -229,15 +228,15 @@ namespace HOCONLINE.Controllers
         {
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
-           
-            string malop = Session["malop"].ToString();
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            string malop = Session["malop"].ToString();
             var lop = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             var kttn = db.BaiTapTNs.Where(c => c.NguoiNop.Equals(id) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
+            var kttl = db.BaiTapTLs.Where(c => c.NguoiNop.Equals(id) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
 
-            if (lop != null || kttn != null)
+            if (lop == null && kttn == null && kttl==null)
             {
-                return RedirectToAction("Diem", "Class");
+                return RedirectToAction("Diem", "Class",new {id=malop });
             }
             var tn = db.BaiTapTNs.Where(c => c.NguoiNop.ToString().Equals(id) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
             ViewData["baitracnghiem"] = tn;
@@ -647,8 +646,13 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            string malop = Session["malop"].ToString();
+            if (ten == null || ma == null)
+            {
+                return BaiTap(malop);
+            }
             var bt = db.BaiTapTLs.SingleOrDefault(x => x.MaBaiNop.ToString().Equals(ma) && x.NguoiNop.Equals(ten));
-           
+            if (bt == null) return BaiTap(malop);
             Session["mabainop"] = bt.MaBaiNop;
             Session["nguoinop"] = bt.NguoiNop;
             Session["mabaitaptl"] = ma;
@@ -656,10 +660,17 @@ namespace HOCONLINE.Controllers
         }
         public ActionResult ShowInforTN(string ten, string ma)
         {
+           
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            string malop = Session["malop"].ToString();
+            if (ten == null || ma == null)
+            {
+                return BaiTap(malop);
+            }
             var bt = db.BaiTapTNs.SingleOrDefault(x => x.MaBaiNop.ToString().Equals(ma) && x.NguoiNop.Equals(ten));
+            if (bt == null) return BaiTap(malop);
             Session["mabainop"] = bt.MaBaiNop;
             Session["nguoinop"] = bt.NguoiNop;
             Session["mabaitaptl"] = ma;
@@ -1366,6 +1377,7 @@ namespace HOCONLINE.Controllers
         {
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
+            Session["malop"] = id;
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
             var lop = db.ThanhVienLops.SingleOrDefault(x => x.MaLop.ToString().Equals(id) && x.Mathanhvien.Equals(user.TenDangNhap));
             if (lop == null)
