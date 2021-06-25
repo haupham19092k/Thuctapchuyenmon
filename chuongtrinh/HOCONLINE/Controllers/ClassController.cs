@@ -2191,6 +2191,7 @@ Extension;
         [HttpPost]
         public void deletecauhoitracnghiem(string macauhoi)
         {
+
             var cauhoi = db.CauHois.SingleOrDefault(x => x.MaCauHoi.ToString().Equals(macauhoi));
             var bainop = db.BaiTapTNs.Where(x => x.MaBaiTap.ToString().Equals(cauhoi.MaBaiTap.ToString())).ToList();
             foreach(var i in bainop)

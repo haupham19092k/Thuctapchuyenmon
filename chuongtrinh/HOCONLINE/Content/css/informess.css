@@ -67,7 +67,7 @@ textarea {
 #btngui {
     font-size: 40px;
     border-radius: 180px;
-    background-image: linear-gradient(to top, #1A6EFF, pink);
+    background-color:transparent;
     text-align: center
 }
 

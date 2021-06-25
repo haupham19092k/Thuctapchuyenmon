@@ -18,9 +18,11 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
     #mess {
         background-image: linear-gradient(to right, #1A6EFF,#FAAFBE);
     }
+
     .messthanhvien {
         width: 100%;
         height: 7%;
@@ -28,6 +30,7 @@
         background-color: transparent;
         padding: 5px
     }
+
     #noidung {
         width: 100%;
         height: 73%;
@@ -37,6 +40,7 @@
         border-radius: 10px;
         background-color: white
     }
+
     .tinnhandi {
         border-radius: 10px;
         background-color: #A9F5F2;
@@ -44,6 +48,7 @@
         word-wrap: break-word;
         max-width: 80%
     }
+
     .tinnhanden {
         border-radius: 10px;
         background-color: #BDBDBD;
@@ -51,6 +56,7 @@
         word-wrap: break-word;
         max-width: 80%
     }
+
     #nhan {
         width: 100%;
         height: 20%;
@@ -66,33 +72,38 @@
         max-width: 100%;
         resize: none
     }
+
     #btngui {
         font-size: 40px;
         border-radius: 180px;
         background-image: linear-gradient(to top, #1A6EFF, pink);
         text-align: center
     }
+
     .noidungtinnhan {
         width: 90%;
         float: left
     }
+
     .nutgui {
         width: 10%;
         float: right;
         height: 100%;
         text-align: center
     }
-    .tennguoinhan{
-        margin-left:30px
+
+    .tennguoinhan {
+        margin-left: 30px
     }
 </style>
 
-
 <script src="~/Scripts/summernote/summernote.min.js"></script>
 <link href="~/Content/summernote/summernote.css" rel="stylesheet" />
+
+<link href="~/Scripts/emoji/css/emoji.css" rel="stylesheet" />
 <script src="~/Scripts/emoji/js/config.js"></script>
 <script src="~/Scripts/emoji/js/tam-emoji.min.js"></script>
-<link href="~/Scripts/emoji/css/emoji.css" rel="stylesheet" />
+
 
 
 <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
@@ -102,7 +113,7 @@
 
     $(document).ready(function () {
         $('#noidung').scrollTop($('#noidung')[0].scrollHeight);
-        load();
+        load1();
         $("#@Model.TenDangNhap").css("color", "black");
         $("#btngui").click(function () {
             var nn ="@Model.TenDangNhap";
@@ -182,8 +193,8 @@
 
     }
 
-    function load() {
-        document.emojiSource = '../Scripts/emoji/img';
+    function load1() {
+        document.emojiSource = '../../Scripts/emoji/img';
         document.emojiButton = 'glyphicon glyphicon-heart';
         var myElement = $('#tinnhan');
         myElement.summernote({
@@ -245,7 +256,7 @@
     <div class="messthanhvien" style="padding:10px">
         <img src=@Model.HinhAnh width="30" height="30" style="border-radius:45px;"><label class="tennguoinhan">  @Model.Ho  @Model.Ten</label>
     </div>
-    <div id="noidung" >
+    <div id="noidung">
         @foreach (var i in tinnhan)
         {
             if (i.NguoiGui.Equals(nguoitao))
@@ -254,18 +265,18 @@
             }
             else
             {
-            <div style="text-align:left"><label class="tinnhanden">@Html.Raw(@i.TinNhan)</label></div>
+                <div style="text-align:left"><label class="tinnhanden">@Html.Raw(@i.TinNhan)</label></div>
+            }
         }
-    }
-        <div id="tnm" ></div>
+        <div id="tnm"></div>
     </div>
     <div id="nhan">
 
-        <div  class="noidungtinnhan">
-            <textarea  id="tinnhan" required  ></textarea>
+        <div class="noidungtinnhan">
+            <textarea id="tinnhan" required></textarea>
         </div>
         <div class="nutgui" style="text-align:center">
-            <button class="glyphicon glyphicon-send" id="btngui" ></button>
+            <button class="glyphicon glyphicon-send" id="btngui"></button>
         </div>
 
 
