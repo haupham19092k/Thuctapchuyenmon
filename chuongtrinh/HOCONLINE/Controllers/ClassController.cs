@@ -196,7 +196,7 @@ namespace HOCONLINE.Controllers
             }
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index",new { id = lophoc.MaLop.ToString() }) ;
 
         }
 
@@ -231,8 +231,8 @@ namespace HOCONLINE.Controllers
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
             string malop = Session["malop"].ToString();
             var lop = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
-            var kttn = db.BaiTapTNs.Where(c => c.NguoiNop.Equals(id) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
-            var kttl = db.BaiTapTLs.Where(c => c.NguoiNop.Equals(id) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
+            var kttn = db.BaiTapTNs.Where(c => c.NguoiNop.Equals(id)&& c.NguoiNop.Equals(user.TenDangNhap) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
+            var kttl = db.BaiTapTLs.Where(c => c.NguoiNop.Equals(id) && c.NguoiNop.Equals(user.TenDangNhap) && c.BaiTap.MaLop.ToString().Equals(malop)).ToList();
 
             if (lop == null && kttn == null && kttl==null)
             {
@@ -340,7 +340,7 @@ namespace HOCONLINE.Controllers
             var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if(gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap",new { id = malop });
             }
             var bt = db.BaiTaps.SingleOrDefault(c => c.MaBaiTap.ToString().Equals(id));
             if (bt != null)
@@ -406,7 +406,7 @@ namespace HOCONLINE.Controllers
             var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap", new { id = malop }); ;
             }
             string chude = Request.Form["Chude"];
             string noidung = Request.Unvalidated.Form["noidungbt"];
@@ -438,7 +438,7 @@ namespace HOCONLINE.Controllers
             var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap", new { id = malop });
             }
             string chude = Request.Form["Chude"];
             string noidung = Request.Unvalidated.Form["noidungbt"];
@@ -519,7 +519,7 @@ namespace HOCONLINE.Controllers
             var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap", new { id = malop });
             }
             string chude = Request.Form["Chude"];
             string noidung = Request.Unvalidated.Form["noidungbt"];
@@ -607,7 +607,7 @@ namespace HOCONLINE.Controllers
                 }
             }
 
-            return RedirectToAction("BaiTap");
+            return RedirectToAction("BaiTap", new { id = ma });
         }
         public ActionResult ShowInforBaiTapForTeacher()
         {
@@ -618,7 +618,7 @@ namespace HOCONLINE.Controllers
             var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap", new { id = malop });
             }
             var bt = db.BaiTaps.SingleOrDefault(c => c.MaBaiTap.ToString().Equals(id));
             if (bt.LoaiBaiTap.Equals("TracNghiem"))
@@ -639,7 +639,7 @@ namespace HOCONLINE.Controllers
                 ViewBag.pdf = pdfdsdiembttl(tn);
                 return View("ShowInforBaiTapForTeacher");
             }
-            return RedirectToAction("BaiTap");
+            return RedirectToAction("BaiTap", new { id = malop });
         }
         public ActionResult ShowInforTL(string ten, string ma)
         {
@@ -707,7 +707,7 @@ namespace HOCONLINE.Controllers
             {
                 return RedirectToAction("Index", "TrangChu");
             }
-            var thanhvien = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(id)).ToList();
+            var thanhvien = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(id)).OrderBy(x=>x.TaiKhoan.Ten).ToList();
             
             return View(thanhvien);
         }
@@ -766,7 +766,7 @@ namespace HOCONLINE.Controllers
 
             var thongbao = db.ThongBaos.Where(x => x.MaLop.ToString().Equals(malop)).OrderByDescending(y => y.NgayDang).ToList();
             Session["lophoc"] = db.LopHocs.SingleOrDefault(y => y.MaLop.ToString().Equals(malop));
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = malop });
         }
         [HttpPost]
         public ActionResult DangBaiTapTL(HttpPostedFileBase[] file)
@@ -775,10 +775,11 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
-            var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(Session["malop"].ToString()) && x.NguoiTao.Equals(user.TenDangNhap));
+            string malop = Session["malop"].ToString();
+            var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap", new { id = malop });
             }
             string nguoitao = user.TenDangNhap;
             string noidung = Request.Unvalidated.Form["noidungbt"];
@@ -853,7 +854,7 @@ namespace HOCONLINE.Controllers
 
             }
 
-            return RedirectToAction("BaiTap");
+            return RedirectToAction("BaiTap", new { id = malop });
         }
 
         [HttpPost]
@@ -866,7 +867,7 @@ namespace HOCONLINE.Controllers
             var gv = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user.TenDangNhap));
             if (gv == null)
             {
-                return RedirectToAction("BaiTap");
+                return RedirectToAction("BaiTap", new { id = malop });
             }
             string nguoitao = user.TenDangNhap;
             string noidung = Request.Unvalidated.Form["noidungbt"];
@@ -1010,6 +1011,7 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            var malop = Session["malop"].ToString();
             string nguoitao = user.TenDangNhap;
             var bt = Session["detracnghiem"] as HOCONLINE.Models.BaiTap;
             db.BaiTaps.Add(bt);
@@ -1064,7 +1066,7 @@ namespace HOCONLINE.Controllers
 
             }
             Session.Remove("detracnghiem");
-            return RedirectToAction("BaiTap");
+            return RedirectToAction("BaiTap", new { id = malop });
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -1073,16 +1075,17 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            string malop = Session["malop"].ToString();
             string noidung = Request.Unvalidated.Form["suanoidungthongbao"];
              
             ThongBao tb = db.ThongBaos.SingleOrDefault(x => x.MaBaiDang.ToString().Equals(id)&&x.NguoiDang.Equals(user.TenDangNhap));
             if (tb == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = malop });
             }
             tb.Thongtin = noidung;
             tb.NgayDang = DateTime.Now;
-            string malop = Session["malop"].ToString();
+           
             db.SaveChanges();
             foreach (var fil in file)
             {
@@ -1133,7 +1136,7 @@ namespace HOCONLINE.Controllers
             }
             var thongbao = db.ThongBaos.Where(x => x.MaLop.ToString().Equals(malop)).OrderByDescending(y => y.NgayDang).ToList();
             ViewData["lophoc"] = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop));
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = malop });
         }
         public ActionResult DeleteThongBao(string id)
         {
@@ -1141,11 +1144,12 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+           string malop = Session["malop"].ToString();
             string noidung = Request.Form["suanoidungthongbao"];
              ThongBao tb = db.ThongBaos.SingleOrDefault(x => x.MaBaiDang.ToString().Equals(id)&&x.NguoiDang.Equals(user.TenDangNhap));
             if (tb == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = malop });
             }
             var ftb = db.FileTBs.Where(x => x.maTB.ToString().Equals(id)).ToList();
             foreach (var f in ftb)
@@ -1156,10 +1160,10 @@ namespace HOCONLINE.Controllers
 
             db.ThongBaos.Remove(tb);
             db.SaveChanges();
-            string malop = Session["malop"].ToString();
+            
             var thongbao = db.ThongBaos.Where(x => x.MaLop.ToString().Equals(malop)).OrderByDescending(y => y.NgayDang).ToList();
             ViewData["lophoc"] = db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop));
-            return RedirectToAction("Index");
+            return RedirectToAction("Index" ,new { id = malop });
         }
         [HttpPost]
         public ActionResult editnopbaitap(HttpPostedFileBase[] file)
@@ -1168,6 +1172,7 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            var malop = Session["malop"].ToString();
             string nguoitao = user.TenDangNhap;
             var mabaitaptl = Session["mabaitaptl"].ToString();
             var bai = db.TTBaiTapTLs.Where(x => x.MaBaiNop.ToString().Equals(mabaitaptl)).ToList();
@@ -1210,7 +1215,7 @@ namespace HOCONLINE.Controllers
             }
 
 
-            return RedirectToAction("BaiTap");
+            return RedirectToAction("BaiTap", new { id = malop });
         }
         [HttpPost]
         public ActionResult nopbaitapTL(HttpPostedFileBase[] file)
@@ -1219,6 +1224,7 @@ namespace HOCONLINE.Controllers
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             if (user == null) return RedirectToAction("Login", "Login");
             if (Session["malop"] == null) return RedirectToAction("Index", "TrangChu");
+            var malop = Session["malop"].ToString();
             string nguoitao = user.TenDangNhap;
 
             foreach (var fil in file)
@@ -1258,7 +1264,7 @@ namespace HOCONLINE.Controllers
             }
 
 
-            return RedirectToAction("BaiTap");
+            return RedirectToAction("BaiTap", new { id = malop });
         }
         public ActionResult LamBaiTN(string id)
         {
@@ -1384,10 +1390,74 @@ namespace HOCONLINE.Controllers
             {
                 return RedirectToAction("Index", "TrangChu");
             }
-            var thanhvienlop = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(id)).ToList();
+            var thanhvienlop = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(id)).OrderBy(x => x.TaiKhoan.Ten).ToList();
+
+            var thanhvien1 = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(id)).OrderBy(x => x.TaiKhoan.Ten).ToList();
+
+            var thanhvien2 = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(id)).OrderBy(x => x.TaiKhoan.Ten).ToList();
+
+            List<Mess> tin11 = new List<Mess>();
+            foreach (var i in thanhvienlop)
+            {
+                var mess1 = db.Messes.Where(x => ((x.NguoiNhan.Equals(user.TenDangNhap) && x.NguoiGui.Equals(i.Mathanhvien))) && x.malop.ToString().Equals(id)).OrderByDescending(x => x.thoigiangui.Value).ToList();
+                if (mess1.Count > 0)
+                {
+                    tin11.Add(mess1[0]);
+                }
+              
+            }
+            foreach (var i in thanhvienlop)
+            {
+                var mess1 = db.Messes.Where(x => ((x.NguoiNhan.Equals(i.Mathanhvien) && x.NguoiGui.Equals(user.TenDangNhap))) && x.malop.ToString().Equals(id)).OrderByDescending(x => x.thoigiangui.Value).ToList();
+                if (mess1.Count > 0)
+                {
+                    tin11.Add(mess1[0]);
+                }
+
+            }
+            for (int i = 0; i < tin11.Count; i++)
+                for (int j = 0; j < tin11.Count - 1; j++)
+                    if (tin11[j].thoigiangui.Value > tin11[j + 1].thoigiangui.Value)
+                    {
+                        var a = tin11[j];
+                        tin11[j] = tin11[j + 1];
+                        tin11[j + 1] = a;
+
+                    }
+
+            List<ThanhVienLop> tv11 = new List<ThanhVienLop>();
+            foreach (var i in tin11)
+            {
+                var s = i.NguoiGui;
+                var t = i.thoigiangui;
+                var tv1 = db.ThanhVienLops.SingleOrDefault(x => x.Mathanhvien.Equals(i.NguoiGui) && x.MaLop.ToString().Equals(id));
+                tv11.Add(tv1);
+                var tv2 = db.ThanhVienLops.SingleOrDefault(x => x.Mathanhvien.Equals(i.NguoiNhan) && x.MaLop.ToString().Equals(id));
+                tv11.Add(tv2);
+            }
+             foreach (var j in tv11)
+                {
+            foreach (var i in thanhvien2)
+            {
+               
+                    if (i.Mathanhvien.Equals(j.Mathanhvien))
+                    {
+                        thanhvienlop.Remove(j);
+                        thanhvienlop.Insert(0, j);
+                       
+                        break;
+                    }
+                }
+
+            }
 
 
-            return View(thanhvienlop);
+
+
+        
+
+
+                return View(thanhvienlop);
         }
         //hien tin nhan trong csdl
         [HttpPost]

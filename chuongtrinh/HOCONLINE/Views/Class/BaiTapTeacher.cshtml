@@ -129,7 +129,7 @@
         $(function () {
             var baitap = $.connection.baitap;
             $(".dangTL").click(function () {
-                if ($('.chudeTL').val().length > 0 && $('.noidungTL').val().length > 0 && $('.thoigianTL').val().length > 0) {
+                if ($('.chudeTL').text().length > 0 && $('.noidungTL').text().length > 0 && $('.thoigianTL').text().length > 0) {
                     baitap.server.baitaps("@lophoc.MaLop");
                 };
 

@@ -175,7 +175,7 @@ namespace HOCONLINE.Controllers
                     var tk = db.TaiKhoans.SingleOrDefault(x => x.TenDangNhap.Equals(nguoitao));
                 
                 taikhoan.TenDangNhap = tk.TenDangNhap;
-                tk.Email = tk.Email;
+                taikhoan.Email = tk.Email;
                 tk.Ho = taikhoan.Ho;
                 tk.Ten = taikhoan.Ten;
                 if(file != null)

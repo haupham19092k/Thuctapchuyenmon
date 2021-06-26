@@ -33,6 +33,8 @@
     textarea {
         border-radius: 10px;
         width: 100%;
+        max-width:100%;
+        min-width:100%;
         height: 20%;
         max-height:30%;
         resize: none
@@ -57,9 +59,21 @@
 
 
 </script>
+<link href="~/Content/css/snow.css" rel="stylesheet" />
 <div class="frameaccount">
 
-
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+        <div class="snowflake">.</div>
+    </div>
 
     <div class="account">
         @using (Html.BeginForm("Checkeditclass", "Class", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -84,7 +98,7 @@
 
             <div class="form-group bmd-form-group">
 
-                <img src=@Model.Hinhanh height="100"  style="border-radius: 10px;" id="hinhanh" />
+                <img src=@Model.Hinhanh height="100" style="border-radius: 10px;max-width:100%" id="hinhanh" />
                 <label class="glyphicon glyphicon-picture" for="image" id="anh"></label>
                 <input type="file" id="image" style="display:none;" accept=".png, .jpg, .jpeg" name="file" />
             </div>

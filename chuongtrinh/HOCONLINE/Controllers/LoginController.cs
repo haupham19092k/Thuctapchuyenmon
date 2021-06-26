@@ -31,7 +31,7 @@ namespace HOCONLINE.Controllers
             {
                 ModelState.AddModelError("", "Invalid Captcha");
             }
-            
+
             else if (ModelState.IsValid)
             {
                 DB db = new DB();
