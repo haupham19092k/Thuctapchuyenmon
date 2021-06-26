@@ -43,15 +43,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Username</label><br />
+                        <label class="bmd-label-floating" style=" color: white;">Username</label><br />
 
                         @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "text", placeholder = "ten dang nhap", @value = Model.TenDangNhap, @disabled = "disabled" })<br />
 
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Email address</label><br />
+                    <div class="form-group bmd-form-group" >
+                        <label class="bmd-label-floating" style=" color: white;" >Email address</label><br />
                         @Html.TextBoxFor(model => model.Email, new { @class = "text", placeholder = "email", @pattern = "[^@\\s]+@[^@\\s]+\\.[^@\\s]+", @title = "Invalid email address", required = "required", @disabled = "disabled" })<br />
                     </div>
                 </div>
@@ -59,14 +59,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Fist Name</label><br />
+                        <label class="bmd-label-floating" style=" color: white;" >Fist Name</label><br />
                         @Html.TextBoxFor(model => model.Ten, new { @class = "text", @autofocus = "autofocus", placeholder = "ten", @value = Model.Ten })<br />
 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Last Name</label><br />
+                        <label class="bmd-label-floating" style=" color: white;" >Last Name</label><br />
                         @Html.TextBoxFor(model => model.Ho, new { @class = "text", @autofocus = "autofocus", placeholder = "Ho", @value = Model.Ho })<br />
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <div class="form-group bmd-form-group">
 
                         <img src=@Model.HinhAnh height="100" width="180" style="border-radius: 10px;" id="hinhanh" />
-                        <label class="glyphicon glyphicon-picture" for="image" id="anh"></label>
+                        <label class="glyphicon glyphicon-picture" for="image" id="anh" style=" color: white;font-size:30px"></label>
                         <input type="file" id="image" style="display:none;" accept=".png, .jpg, .jpeg" name="file" />
                     </div>
                 </div>

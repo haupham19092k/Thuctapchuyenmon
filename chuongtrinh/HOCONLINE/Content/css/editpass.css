@@ -14,11 +14,12 @@
 .account {
     position: relative;
     text-align: left;
-    border: 2px solid #000000;
+    border: 0px solid #000000;
+    min-width:350px;
     width: 30%;
-    height: 60%;
-    background: rgba(0,0,0,0);
-    background-color: #fff;
+    height: 500px;
+    background: #5858FA;
+    background-color: rgba(0,0,0,0.2);
     padding: 40px;
     border-radius: 10px;
     margin: 10% auto;
@@ -50,6 +51,18 @@ input {
     max-width: 90%;
     outline: none;
 }
+input {
+    background: rgba(0,0,0,0.1);
+    border-bottom: 1px solid #444;
+    padding: 12px 40px 12px 20px;
+    color:white;
+}
+    input::placeholder {
+        color: white;
+    }
+    input:focus, input:focus::placeholder, input:focus + i {
+        color: #ff1464;
+    }
 
 
 

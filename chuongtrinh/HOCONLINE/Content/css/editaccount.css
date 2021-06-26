@@ -1,7 +1,4 @@
-﻿input {
-    border-radius: 5px;
-}
-
+﻿
 .frameaccount {
     width: 100%;
     height: 100%;
@@ -16,10 +13,11 @@
 .account {
     position: relative;
     text-align: left;
-    border: 2px solid #000000;
-    width: 40%;
-    height: 60%;
-    background: white;
+    border: 0px solid #000000;
+    width: 700px;
+    height: 500px;
+    background: #5858FA;
+    background-color: rgba(0,0,0,0.3);
     padding: 40px;
     border-radius: 10px;
     margin: 100px auto;
@@ -46,3 +44,23 @@ textarea {
     text-align: left;
     padding: 20px
 }
+input {
+    border-radius: 5px;
+    width: 90%;
+    max-width: 90%;
+    outline: none;
+}
+input {
+    background: rgba(0,0,0,0.1);
+    border-bottom: 1px solid #444;
+    padding: 12px 40px 12px 20px;
+    color: white;
+}
+
+    input::placeholder {
+        color: white;
+    }
+
+    input:focus, input:focus::placeholder, input:focus + i {
+        color: #ff1464;
+    }

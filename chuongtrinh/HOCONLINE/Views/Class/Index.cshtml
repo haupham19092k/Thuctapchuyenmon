@@ -97,6 +97,13 @@
              // set focus to editable area after initializing summernote
         });
     }
+    function conformdelete() {
+        var answer = window.confirm("Bạn có muốn xóa thông báo này không !");
+        if (answer) {
+            return true;
+        }
+        else return false;
+    }
 
     $(function () {
         var thongbao = $.connection.thongbao;
@@ -222,7 +229,7 @@
                                                 <i class="glyphicon glyphicon-option-vertical" id="menu " data-toggle="dropdown" style="margin-right:10px" aria-haspopup="true" aria-expanded="false"></i>
                                                 <div class="dropdown-menu " aria-labelledby="menu ">
                                                     <ul class="nav">
-                                                        <li><a class="dropdown-itemxoa" href="~/Class/DeleteThongBao/@i.MaBaiDang">xoa</a></li>
+                                                        <li><a class="dropdown-itemxoa" href="~/Class/DeleteThongBao/@i.MaBaiDang" onclick="return conformdelete()">xoa</a></li>
                                                         <li><a class="dropdown-itemsua" id="@i.MaBaiDang">sua</a></li>
 
 

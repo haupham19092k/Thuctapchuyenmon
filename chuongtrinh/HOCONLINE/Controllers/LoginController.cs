@@ -19,8 +19,7 @@ namespace HOCONLINE.Controllers
                 return RedirectToAction("Index", "TrangChu");
             }
             TaiKhoan taiKhoan = new TaiKhoan();
-            taiKhoan.TenDangNhap = "1";
-            taiKhoan.MatKhau = "hau";
+           
             return View(taiKhoan);
         }
         [HttpPost]

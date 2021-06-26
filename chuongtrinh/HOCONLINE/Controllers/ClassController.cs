@@ -564,6 +564,10 @@ namespace HOCONLINE.Controllers
             }
 
             var bt = db.BaiTaps.SingleOrDefault(c => c.MaBaiTap.ToString().Equals(id));
+            if(bt != null)
+            {
+
+          
             if (bt.NguoiTao.Equals(nguoitao))
             {
                 Session["mabaitap"] = id;
@@ -606,7 +610,7 @@ namespace HOCONLINE.Controllers
                     return View("ShowInforBaiTapTL", tn);
                 }
             }
-
+            }
             return RedirectToAction("BaiTap", new { id = ma });
         }
         public ActionResult ShowInforBaiTapForTeacher()

@@ -1,7 +1,7 @@
 ﻿@model List<HOCONLINE.Models.BaiTap>
 @{
 
-    ViewData["Title"] = "Thông tin bài tập HS";
+    ViewData["Title"] = "Bài tập HS";
     Layout = "~/Views/Shared/Layoutclass.cshtml";
     var lophoc = Session["lophoc"] as HOCONLINE.Models.LopHoc;
     <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
@@ -22,20 +22,22 @@
     <link href="~/Content/css/Baitapsv.css" rel="stylesheet" />
     <script type="text/javascript">
 
-        reset();
-        $('.headbaitap').css("color", "black");
-        $('.headbaitap').css("background-color", "white");
+        $(document).ready(function () {
+            reset();
+            $('.headbaitap').css("color", "black");
+            $('.headbaitap').css("background-color", "white");
 
-        $("#anthongbaomoi").click(function () {
-            $(".thongbaomoi").css("display", "none");
+            $("#anthongbaomoi").click(function () {
+                
+                $(".thongbaomoi").css("display", "none");
+            });
         });
-
 
         $(function () {
             var baitap = $.connection.baitap;
 
             baitap.client.baitap = function (malop) {
-                alert("ÁDAsd");
+               
                 if (  malop == "@lophoc.MaLop") {
                     $(".thongbaomoi").css("display", "block");
 
@@ -55,7 +57,7 @@
 <body class="container" style="background-color: #E6E6E6; margin-top: 20px">
     <div class="thongbaomoi">
         <label>Bai tap moi</label><br />
-        <a href="~/Class/BaiTap">Làm mới</a>
+        <a href="~/Class/BaiTap/@malop">Làm mới</a>
         <a id="anthongbaomoi" href="#">Huy</a>
     </div>
 

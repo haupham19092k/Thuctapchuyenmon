@@ -15,7 +15,8 @@
     border: 0px solid #000000;
     width: 500px;
     height: auto;
-    background-color: white;
+    background: #5858FA;
+    background-color: rgba(0,0,0,0.3);
     padding: 40px;
     border-radius: 5px;
     margin: 10% auto;
@@ -26,9 +27,13 @@ textarea {
     border-radius: 5px;
     resize: none;
     outline: none;
-    width:400px;
+    width: 400px;
     max-width: 500px;
-    height:100px
+    height: 100px;
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid #444;
+    padding: 12px 40px 12px 20px;
+    color: white;
 }
 
 .glyphicon-remove-circle:hover {
@@ -54,4 +59,10 @@ textarea {
     border-radius: 5px;
     text-align: left;
     padding: 20px
+}
+textarea::placeholder {
+    color: white;
+}
+textarea:focus, textarea:focus::placeholder, textarea:focus + i {
+    color: #ff1464;
 }

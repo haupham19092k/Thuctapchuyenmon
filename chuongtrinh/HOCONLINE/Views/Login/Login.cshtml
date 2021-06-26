@@ -30,10 +30,10 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="group">
-                    @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "text", @autofocus = "autofocus", placeholder = "Username", autocomplete = "off" })
+                    @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "text", @autofocus = "autofocus", placeholder = "Username", autocomplete = "off", @required = "required" })
                 </div>
                 <div class="group">
-                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "password", type = "password", placeholder = "Password", autocomplete = "off" } })
+                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "password", type = "password", placeholder = "Password", autocomplete = "off" , @required = "required" } })
                 </div>
                 <div class="group">
                     @Html.Captcha(5)

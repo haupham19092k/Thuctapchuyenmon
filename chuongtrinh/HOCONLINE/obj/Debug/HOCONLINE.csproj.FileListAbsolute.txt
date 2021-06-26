@@ -561,4 +561,3 @@ C:\Users\ADMIN\OneDrive\Máy tính\ttcm\chuongtrinh\HOCONLINE\obj\Debug\HOCONLIN
 C:\Users\ADMIN\OneDrive\Máy tính\ttcm\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.csproj.CopyComplete
 C:\Users\ADMIN\OneDrive\Máy tính\ttcm\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.dll
 C:\Users\ADMIN\OneDrive\Máy tính\ttcm\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.pdb
-C:\Users\ADMIN\OneDrive\Máy tính\ttcm\chuongtrinh\HOCONLINE\obj\Debug\HOCONLINE.csprojAssemblyReference.cache
