@@ -73,35 +73,35 @@
 
         @*thanh vien lop*@
         <div class="divthanhvien">
-
-            @{
-                            int z = 0;
-                            foreach (var i in Model)
+            <div class="nguoimoi"> </div>
+                @{
+                    int z = 0;
+                    foreach (var i in Model)
+                    {
+                        if (!i.Mathanhvien.Equals(nguoitao))
+                        {
+                            using (Ajax.BeginForm("InforMess", new { id = i.Mathanhvien }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "mess" }))
                             {
-                                if (!i.Mathanhvien.Equals(nguoitao))
-                                {
-                                    using (Ajax.BeginForm("InforMess", new { id = i.Mathanhvien }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "mess"}))
-                                    {
 
-                        <div style="width:100%;border:0px;margin-bottom:0px;" id="thanhvien">
-                            <button id="@i.Mathanhvien"  class=@z style="width: 100%; border: 0px; background-color: transparent; text-align: left">
-                                <img class="navbar-link" src=@i.TaiKhoan.HinhAnh width="30" height="30" style="border-radius:45px;" />
-                                @i.TaiKhoan.Ho @i.TaiKhoan.Ten
-                                
-                            </button>
-                        </div>
-                            z++;
+                                <div style="width:100%;border:0px;margin-bottom:0px;" id="thanhvien">
+                                    <button id="@i.Mathanhvien" class=@z style="width: 100%; border: 0px; background-color: transparent; text-align: left">
+                                        <img class="navbar-link" src=@i.TaiKhoan.HinhAnh width="30" height="30" style="border-radius:45px;" />
+                                        @i.TaiKhoan.Ho @i.TaiKhoan.Ten
+
+                                    </button>
+                                </div>
+                                z++;
+                            }
                         }
-                    }
 
+                    }
                 }
-            }
+            </div>
+
+            @*tin nhan*@
+            <div class="divmess" id="mess" style="background-image: linear-gradient(to right, #1A6EFF,#FAAFBE);">
+
+            </div>
         </div>
-        
-        @*tin nhan*@
-        <div class="divmess" id="mess" style="background-image: linear-gradient(to right, #1A6EFF,#FAAFBE);">
-            
-        </div>
-    </div>
 </body>
 </html>
