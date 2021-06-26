@@ -142,7 +142,7 @@
         @if (lop.NguoiTao.Equals((Session["user"] as HOCONLINE.Models.TaiKhoan).TenDangNhap))
         {<br />
             <label style="font-size:20px" class="ngaytao">Ngày Tạo:@lop.NgayTao.Value.ToString(string.Format("HH:mm:ss dd/MM/yyyy"))</label><br />
-            <label  style="font-size:20px"class="malop">Mã Lớp :@HOCONLINE.Models.crypt.Encrypt.encrypt(@lop.MaLop.ToString())</label>
+            <label  style="font-size:20px"class="malop">Mã Lớp :@HOCONLINE.Models.crypt.Encrypt.encryptclass(@lop.MaLop.ToString())</label>
             <a class="glyphicon glyphicon-edit navbar-right  editclass" href="~/Class/Editclass"></a>
         }
 

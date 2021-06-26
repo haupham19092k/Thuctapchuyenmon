@@ -69,7 +69,7 @@ namespace HOCONLINE.Controllers
             if (user == null) return RedirectToAction("Login", "Login");
             string nguoitao = user.TenDangNhap;
             string id = Request.Form["maclassid"];
-            string ma = Models.crypt.Encrypt.Decrypt(id).ToString();
+            string ma = Models.crypt.Encrypt.Decryptclass(id).ToString();
 
 
             if (ModelState.IsValid)

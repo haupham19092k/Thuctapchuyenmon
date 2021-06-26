@@ -35,7 +35,7 @@ namespace HOCONLINE.Controllers
             else if (ModelState.IsValid)
             {
                 DB db = new DB();
-                string mk = Models.crypt.Encrypt.encrypt(taiKhoan.MatKhau);
+                string mk = Models.crypt.Encrypt.encryptuser(taiKhoan.MatKhau);
                 var TK = db.TaiKhoans.SingleOrDefault(x => x.TenDangNhap.Equals(taiKhoan.TenDangNhap) && x.MatKhau.Equals(mk));
                 if (TK != null)
                 {

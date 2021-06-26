@@ -46,7 +46,7 @@ namespace HOCONLINE.Controllers
                 var tk= Session["registeruser"] as HOCONLINE.Models.TaiKhoan;
                 if (tk != null)
                 {
-                    string matkhau=Models.crypt.Encrypt.encrypt(tk.MatKhau);
+                    string matkhau=Models.crypt.Encrypt.encryptuser(tk.MatKhau);
                     tk.MatKhau = matkhau;
                     db.TaiKhoans.Add(tk);
                     db.SaveChanges();
@@ -111,7 +111,7 @@ namespace HOCONLINE.Controllers
 
                var taikhoan= db.TaiKhoans.SingleOrDefault(x => x.TenDangNhap.Equals(tk.TenDangNhap) && x.Email.Equals(tk.Email));
 
-                taikhoan.MatKhau = Models.crypt.Encrypt.encrypt(pass);
+                taikhoan.MatKhau = Models.crypt.Encrypt.encryptuser(pass);
                 db.SaveChanges();
                 return RedirectToAction("Login", "Login");
 
@@ -217,14 +217,14 @@ namespace HOCONLINE.Controllers
             var pass3 = Request.Form["pass3"];
             var user = Session["user"] as HOCONLINE.Models.TaiKhoan;
             string nguoitao = user.TenDangNhap;
-            string pass =Models.crypt.Encrypt.Decrypt(user.MatKhau);
+            string pass =Models.crypt.Encrypt.Decryptuser(user.MatKhau);
             if (pass1.Equals(pass))
             {
                 if (pass2 == pass3)
                 {
                     var tk = db.TaiKhoans.SingleOrDefault(x => x.TenDangNhap.Equals(nguoitao));
-                    tk.MatKhau = Models.crypt.Encrypt.encrypt( pass2);
-                    Session["pass"] = Models.crypt.Encrypt.encrypt(pass2);
+                    tk.MatKhau = Models.crypt.Encrypt.encryptuser( pass2);
+                    Session["pass"] = Models.crypt.Encrypt.encryptuser(pass2);
                     db.SaveChanges();
                     ModelState.AddModelError("Erroreditpass", "doi mat khau thanh cong");
                     return View("EditPass");
