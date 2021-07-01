@@ -628,7 +628,7 @@ namespace HOCONLINE.Controllers
             if (bt.LoaiBaiTap.Equals("TracNghiem"))
             {
 
-                var tn = db.BaiTapTNs.Where(c => c.MaBaiTap.ToString().Equals(id)).ToList();
+                var tn = db.BaiTapTNs.Where(c => c.MaBaiTap.ToString().Equals(id)).OrderBy(x => x.TaiKhoan.Ten).ToList();
                 ViewData["baitracnghiem"] = tn;
                 ViewBag.excel = exceldsdiembttn(tn);
                 ViewBag.pdf = pdfdsdiembttn(tn);
@@ -637,7 +637,7 @@ namespace HOCONLINE.Controllers
             else if (bt.LoaiBaiTap.Equals("TuLuan"))
             {
 
-                var tn = db.BaiTapTLs.Where(c => c.MaBaiTap.ToString().Equals(id)).ToList();
+                var tn = db.BaiTapTLs.Where(c => c.MaBaiTap.ToString().Equals(id)).OrderBy(x=>x.TaiKhoan.Ten).ToList();
                 ViewData["baituluan"] = tn;
                 ViewBag.excel = exceldsdiembttl(tn);
                 ViewBag.pdf = pdfdsdiembttl(tn);
@@ -940,7 +940,7 @@ namespace HOCONLINE.Controllers
                                 if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                 {
                                     String anh = null;
-                                    string s = nguoitao + "" + sas + DateTime.Now.ToLocalTime().ToString().Replace(" ", "").Replace("/", "").Replace(":", "") + String.Format(".png");
+                                    string s = nguoitao + "-" + sas + DateTime.Now.ToString("yyyyMMddHHmmss")+".png";
                                     DocPicture pic = docObject as DocPicture;
                                     String imgName = Server.MapPath("~/Content/image/ImageCauhoiTracnghiem/" + s);
                                     anh = "/Content/image/ImageCauhoiTracnghiem/" + s;
@@ -2039,21 +2039,20 @@ Extension;
             table.Columns[1].Width = 15;
             table.Columns[5].Width = 3;
             table.Style.ShowHeader = true;
+            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 10f), true);
             table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
-            table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
-            table.Style.AlternateStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
             foreach (PdfColumn col in table.Columns)
             {
 
-
+               
                 col.StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
 
             }
 
             table.Style.HeaderStyle.BackgroundBrush = PdfBrushes.Gray;
 
-            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
-            table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 10f), true);
+           
             table.Draw(page, new RectangleF(0, 90, 500, 70));
             string path = Server.MapPath("~/Content/file/" + dsdiem[0].BaiTap.MaLop.ToString() + "_" + dsdiem[0].BaiTap.MaBaiTap.ToString() + ".pdf");
 
@@ -2138,22 +2137,21 @@ Extension;
             table.Columns[1].Width = 15;
             table.Columns[5].Width = 3;
             table.Style.ShowHeader = true;
+            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 10f), true);
             table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
-            table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
-            table.Style.AlternateStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
             foreach (PdfColumn col in table.Columns)
             {
 
-
+              
                 col.StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
 
             }
 
             table.Style.HeaderStyle.BackgroundBrush = PdfBrushes.Gray;
 
-            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
-            table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 10f), true);
-            table.Draw(page, new RectangleF(0, 90, 500, 70));
+           
+            table.Draw(page, new RectangleF(0, 90, 500,800));
 
             string path = Server.MapPath("~/Content/file/" + dsdiem[0].BaiTap.MaLop.ToString() + "_" + dsdiem[0].BaiTap.MaBaiTap.ToString() + ".pdf");
             string path1 = "/Content/file/" + dsdiem[0].BaiTap.MaLop.ToString() + "_" + dsdiem[0].BaiTap.MaBaiTap.ToString() + ".pdf";
@@ -2211,23 +2209,22 @@ Extension;
             table.Columns[1].Width = 20;
             table.Columns[6].Width = 8;
             table.Style.ShowHeader = true;
-            table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
-            table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
-            table.Style.AlternateStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
+            table.Style.HeaderStyle.BackgroundBrush = PdfBrushes.Gray;
 
+            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 10f), true);
+            table.Style.DefaultStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 8f), true);
             foreach (PdfColumn col in table.Columns)
             {
 
-               
+              
                 col.StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
 
             }
            
             table.Style.HeaderStyle.BackgroundBrush = PdfBrushes.Gray;
 
-            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
-            table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial Unicode MS", 10f), true);
-            table.Draw(page, new RectangleF(0, 90, 500, 70));
+            table.Draw(page, new RectangleF(0, 90, 500, 800));
 
             string path = Server.MapPath("~/Content/file/" + lophoc.MaLop.ToString() + ".pdf");
             string path1 = "/Content/file/" + lophoc.MaLop.ToString() + ".pdf";

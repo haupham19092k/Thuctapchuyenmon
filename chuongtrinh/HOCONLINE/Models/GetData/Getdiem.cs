@@ -15,12 +15,12 @@ namespace HOCONLINE.Models.GetData
             List<ThanhVienLop> thanhvienlop = new List<ThanhVienLop>();
             if (db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user)) != null)
             {
-                thanhvienlop = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(malop) && x.LopHoc.NguoiTao.Equals(user) && !x.Mathanhvien.Equals(user)).ToList();
+                thanhvienlop = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(malop) && x.LopHoc.NguoiTao.Equals(user) && !x.Mathanhvien.Equals(user)).OrderBy(x=>x.TaiKhoan.Ten).ToList();
 
             }
             else if (db.LopHocs.SingleOrDefault(x => x.MaLop.ToString().Equals(malop) && x.NguoiTao.Equals(user)) == null)
             {
-                thanhvienlop = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(malop) && !x.LopHoc.NguoiTao.Equals(x.Mathanhvien) && x.Mathanhvien.Equals(user)).ToList();
+                thanhvienlop = db.ThanhVienLops.Where(x => x.MaLop.ToString().Equals(malop) && !x.LopHoc.NguoiTao.Equals(x.Mathanhvien) && x.Mathanhvien.Equals(user)).OrderBy(x => x.TaiKhoan.Ten).ToList();
 
             }
 

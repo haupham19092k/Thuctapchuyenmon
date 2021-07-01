@@ -47,7 +47,11 @@ textarea {
     background-image: linear-gradient(to right,#FF00BF,#D8D8D8);
     padding: 10px
 }
-
+.filebieumau {
+    border-radius: 20px;
+    background-color:cornflowerblue;
+    padding: 10px
+}
 .dangTN, .dangTL {
     background-image: linear-gradient(to right,#0404B4,#A901DB);
     padding: 5px;
