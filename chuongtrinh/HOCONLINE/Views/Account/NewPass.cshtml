@@ -28,11 +28,11 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="group">
-                    <input type="password" name="pass" placeholder="New Password" />
+                    <input type="password" name="pass" placeholder="New Password"  pattern=".{5,20}" title="Minimum length  is 5 maximum length is 20" />
                 </div>
 
                 <div class="group">
-                    <input type="password" name="confirmpass" placeholder="Confirm New Password" />
+                    <input type="password" name="confirmpass" placeholder="Confirm New Password"  pattern=".{5,20}" title="Minimum length  is 5 maximum length is 20" />
                 </div>
                 <br />
                 <button id="login" type="submit">xác nhận</button><br />

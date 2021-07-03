@@ -22,7 +22,7 @@ namespace HOCONLINE.Models
         [Key]
         public long MaLop { get; set; }
 
-        [StringLength(20)]
+        [StringLength(2000)]
         public string TenLop { get; set; }
 
         public DateTime? NgayTao { get; set; }

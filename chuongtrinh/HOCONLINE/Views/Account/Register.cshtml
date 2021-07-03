@@ -40,10 +40,10 @@
                     @Html.TextBoxFor(model => model.Email, new { @class = "text",  placeholder = "Email", @pattern = "[^@\\s]+@[^@\\s]+\\.[^@\\s]+", @title = "Invalid email address" })
                 </div>
                 <div class="group">
-                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "password", type = "password", placeholder = "Password" , required = "required" } })
+                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "password", type = "password", placeholder = "Password" , required = "required", @pattern = ".{5,20}", @title = "Minimum length  is 5 maximum length is 20" } })
                 </div>
                 <div class="group">
-                    <input type="password"  name="confirmpass" placeholder="Confirm Password" required />
+                    <input type="password"  name="confirmpass" placeholder="Confirm Password" required  pattern=".{5,20}" title="Minimum length  is 5 maximum length is 20" />
                 </div>
                 
                 <br />
