@@ -111,13 +111,14 @@
 <script src="~/signalr/hubs"></script>
 <script type="text/javascript">
 
-    
+
     $(document).ready(function () {
 
-        
+
         $('#noidung').scrollTop($('#noidung')[0].scrollHeight);
 
         load1();
+
         $("#@Model.TenDangNhap").css("color", "white");
         $("#btngui").click(function () {
             var nn ="@Model.TenDangNhap";
@@ -131,7 +132,7 @@
                 }
             });
 
-                $('#tnm').append("<div style='text-align:right'><label class='tinnhandi'>" + tn + "</label></div>");
+                $('#tnm').append("<div style='text-align:right'><label class='tinnhandi'>" + tn + "<label style='font-size:10px;color:#848484'>@DateTime.Now.ToString(string.Format("HH:mm "))</label></label></div>");
                 $('#noidung').scrollTop($('#noidung')[0].scrollHeight);
             }
 
@@ -181,23 +182,23 @@
         var mess = $.connection.chat;
         mess.client.message = function (sender, receiver, malop, message) {
             if (sender == "@nguoitao" && receiver == @Model.TenDangNhap && malop == "@malop" && message != "") {
-                $('#tnm').append("<div style='text-align:right'><label class='tinnhandi'>" + message + "</label></div>");
+                $('#tnm').append("<div style='text-align:right'><label class='tinnhandi'>" + message + "<label style='font-size:10px;color:#848484'>@DateTime.Now.ToString(string.Format("HH:mm "))</label></label></div>");
                 $('#noidung').scrollTop($('#noidung')[0].scrollHeight);
             }
             else if (receiver == "@nguoitao" && sender == "@Model.TenDangNhap" && malop == "@malop" && message != "") {
 
-                $('#tnm').append("<div style='text-align:left'><label class='tinnhanden'>" + message + "</label></div>");
+                $('#tnm').append("<div style='text-align:left'><label class='tinnhanden'>" + message + "<label style='font-size:10px;color:#848484'>@DateTime.Now.ToString(string.Format("HH:mm "))</label></label></div>");
                 $('#noidung').scrollTop($('#noidung')[0].scrollHeight);
             }
             else if (receiver == "@nguoitao" && malop == "@malop" && message != "") {
-               
-               
+
+                $('.divthanhvien').scrollTop(0);
                 var s = $("#" + sender).html();
-                
+
                 $("#" + sender).remove();
                 $(".nguoimoi").after("<form action='/Class/InforMess/" + sender + "' data-ajax='true' data-ajax-method='POST' data-ajax-mode='replace' data-ajax-update='#mess' id='form1' method='post'> <div style = 'width:100%;border:0px;margin-bottom:0px;' id = 'thanhvien' >" +
                     "<button id='" + sender + "' class='3' style='width: 100%; border: 0px; background-color: transparent; text-align: left; color: red;'>" + s + " </button></div ></form >");
-              
+
             }
         }
 
@@ -263,16 +264,29 @@
         <img src=@Model.HinhAnh width="30" height="30" style="border-radius:45px;"><label class="tennguoinhan">  @Model.Ho  @Model.Ten</label>
     </div>
     <div id="noidung">
+        @{
+            int zz = 0;
+        }
         @foreach (var i in tinnhan)
         {
+            if (zz == 0)
+            {
+
+                <div style="text-align:center;"><label style="font-size:10px;color:#848484">@tinnhan[zz].thoigiangui.Value.ToString(string.Format("dd/MM/yyyy"))</label></div>
+            }
+            if (zz > 0 && zz <= tinnhan.Count - 1 && !tinnhan[zz].thoigiangui.Value.ToString(string.Format("dd/MM/yyyy")).Equals(tinnhan[zz - 1].thoigiangui.Value.ToString(string.Format("dd/MM/yyyy"))))
+            {
+                <div style="text-align:center;"><label  style="font-size:10px;color:#848484">@tinnhan[zz].thoigiangui.Value.ToString(string.Format("dd/MM/yyyy"))</label></div>
+            }
             if (i.NguoiGui.Equals(nguoitao))
             {
-                <div style="text-align:right;"><label class="tinnhandi">@Html.Raw(@i.TinNhan)</label></div>
+                <div style="text-align:right;"><label class="tinnhandi">@Html.Raw(@i.TinNhan)<label style="font-size:10px;color:#848484">@tinnhan[zz].thoigiangui.Value.ToString(string.Format("HH:mm "))</label></label></div>
             }
             else
             {
-                <div style="text-align:left"><label class="tinnhanden">@Html.Raw(@i.TinNhan)</label></div>
+                <div style="text-align:left"><label class="tinnhanden">@Html.Raw(@i.TinNhan)<label style="font-size:10px;color:#848484">@tinnhan[zz].thoigiangui.Value.ToString(string.Format("HH:mm "))</label></label></div>
             }
+            zz++;
         }
         <div id="tnm"></div>
     </div>
